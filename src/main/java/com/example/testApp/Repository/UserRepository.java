@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 public class UserRepository {
 
     public User getUser(){
-        return new User("Dhruv","Canada","29");
+        return new User("Dhruv","Canada",29,"R/Codes/ProfilePics/");
     }
 }
