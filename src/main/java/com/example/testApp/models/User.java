@@ -2,11 +2,19 @@ package com.example.testApp.models;
 
 public class User {
 
+    private int userId;
     private String name;
     private String address;
     private int age;
 
     private String profilePicUrl;
+
+    public User(String name, String address, int age, String profilePicUrl) {
+        this.name = name;
+        this.address = address;
+        this.age = age;
+        this.profilePicUrl= profilePicUrl;
+    }
 
     public int getAge() {
         return age;
@@ -24,12 +32,8 @@ public class User {
         this.profilePicUrl = profilePicUrl;
     }
 
-    public User(String name, String address, int age, String profilePicUrl) {
-        this.name = name;
-        this.address = address;
-        this.age = age;
-        this.profilePicUrl= profilePicUrl;
-    }
+
+
 
     public String getName() {
         return name;
@@ -47,5 +51,11 @@ public class User {
         this.address = address;
     }
 
+    public int getUserId() {
+        return userId;
+    }
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }
