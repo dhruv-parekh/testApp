@@ -5,6 +5,7 @@ import com.example.testApp.service.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class AlbumResources {
     }
 
     @PostMapping("/album")
-    public Album saveAlbum(@RequestBody Album album){
+    public Album saveAlbum(@RequestBody @Valid Album album){
         return albumService.saveAlbum(album);
     }
 
@@ -37,7 +38,7 @@ public class AlbumResources {
 
 
     @PutMapping("/album/{albumId}")
-    public String updateAlbum(@PathVariable int albumId, @RequestBody Album album){
+    public String updateAlbum(@PathVariable int albumId, @RequestBody @Valid Album album){
         return albumService.updateAlbumById(albumId, album);
     }
 

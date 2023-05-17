@@ -33,6 +33,10 @@ public class TestAppService {
         return userRepository.findAllByName(name);
     }
 
+    public User findUserById(String id) {
+         return userRepository.findById(id).get();
+    }
+
 
 //    public User getUserById(String id) {
 //        return userRepository.findById(id);

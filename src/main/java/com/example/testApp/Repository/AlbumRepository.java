@@ -13,7 +13,7 @@ public class AlbumRepository {
     private List<Album> albumList = new ArrayList<>();
 
     public Album getAlbum() {
-        return new Album("album1","Dhruv's Album","R/Codes/ProfilePics/");
+        return new Album("album1","Dhruv's Album","R/Codes/ProfilePics/","dhruv","21-11-1993");
     }
 
     public Album saveUser(Album album) {

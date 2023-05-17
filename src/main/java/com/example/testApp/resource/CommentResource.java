@@ -7,6 +7,7 @@ import com.example.testApp.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,12 +33,12 @@ public class CommentResource {
 
 
     @PostMapping
-    public String saveComment(@RequestBody Comment comment){
+    public String saveComment(@RequestBody @Valid Comment comment){
         return commentService.saveComment(comment);
     }
 
     @PutMapping
-    public String updateComment(@RequestBody Comment Comment){
+    public String updateComment(@RequestBody @Valid Comment Comment){
         return commentService.updateComment(Comment);
     }
 

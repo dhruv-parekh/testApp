@@ -1,5 +1,6 @@
 package com.example.testApp.models;
 
+import com.example.testApp.Validation.ValidCreatedBy;
 import org.springframework.data.annotation.Id;
 
 
@@ -9,6 +10,8 @@ public class Photo {
     private String albumId;
 
     private String photoUrl;
+
+    @ValidCreatedBy
     private String createdBy;
     private String dateCreated;
 
