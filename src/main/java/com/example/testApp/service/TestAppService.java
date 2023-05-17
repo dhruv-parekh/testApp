@@ -12,28 +12,50 @@ public class TestAppService {
 
     @Autowired
     private UserRepository userRepository;
-    public User getUser(){
-
-        return userRepository.getUser();
-    }
 
     public User saveUser(User user) {
-        return userRepository.saverUser(user);
+        return userRepository.save(user);
     }
 
     public List<User> getAllUsers() {
-        return userRepository.getAllUsers();
+        return userRepository.findAll();
     }
 
-    public User getUserById(int userId) {
-        return userRepository.getUserByUserId(userId);
+    public User updateUser(User user) {
+        return userRepository.save(user);
     }
 
-    public User updateUserById(int userId, User user) {
-        return userRepository.updateUserById(userId,user);
+    public void deleteuserById(String id) {
+        userRepository.deleteById(id);
     }
 
-    public void deleteuserById(int userId) {
-        userRepository.deleteUserById(userId);
+    public List<User> findAllByName(String name) {
+        return userRepository.findAllByName(name);
     }
+
+
+//    public User getUserById(String id) {
+//        return userRepository.findById(id);
+//    }
+//
+//    public User getUser(){
+//
+//        return userRepository.getUser();
+//    }
+//
+//
+//
+//    public List<User> getAllUsers() {
+//        return userRepository.getAllUsers();
+//    }
+//
+//    public User getUserById(int userId) {
+//        return userRepository.getUserByUserId(userId);
+//    }
+//
+//
+//
+//    public void deleteuserById(int userId) {
+//        userRepository.deleteUserById(userId);
+//    }
 }

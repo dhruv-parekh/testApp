@@ -1,8 +1,11 @@
 package com.example.testApp.models;
 
+import org.springframework.data.annotation.Id;
+
 public class User {
 
-    private int userId;
+    @Id
+    private String id;
     private String name;
     private String address;
     private int age;
@@ -51,11 +54,11 @@ public class User {
         this.address = address;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getUserId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserId(String id) {
+        this.id = id;
     }
 }

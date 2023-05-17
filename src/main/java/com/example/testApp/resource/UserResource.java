@@ -8,39 +8,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/userApi")
+@RequestMapping("/userApi/users")
 public class UserResource {
 
     @Autowired
     private TestAppService testAppService;
-    @GetMapping("/user")
-    public User getUser(){
-        return testAppService.getUser();
-    }
 
-    //@RequestMapping(value = "/user",method = RequestMethod.POST)
-    @PostMapping( value = "/user")
+
+    @PostMapping
     public User saveUser(@RequestBody User user){
-       return testAppService.saveUser(user);
+        return testAppService.saveUser(user);
     }
 
-    @GetMapping("/allUsers")
+    @GetMapping
     public List<User> getAllUsers(){
         return testAppService.getAllUsers();
     }
 
-    @GetMapping("/user/{userId}")
-    public User getUserById(@PathVariable int userId){
-        return testAppService.getUserById(userId);
+    @GetMapping("/find")
+    public List<User> findAllByName(@RequestParam String name){
+        return testAppService.findAllByName(name);
     }
 
-    @PutMapping("/user/{userId}")
-    public User updateUserById(@PathVariable int userId, @RequestBody User user){
-        return testAppService.updateUserById(userId,user);
+    @PutMapping
+    public User updateUserById( @RequestBody User user){
+        return testAppService.updateUser(user);
     }
 
-    @DeleteMapping("/user")
-    public void deleteUserById(@RequestParam int userId){
-        testAppService.deleteuserById(userId);
+    @DeleteMapping
+    public void deleteUserById(@RequestParam(name = "id") String id){
+        testAppService.deleteuserById(id);
     }
+
 }
