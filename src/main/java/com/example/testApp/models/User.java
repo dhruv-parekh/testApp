@@ -2,6 +2,7 @@ package com.example.testApp.models;
 
 import com.example.testApp.Validation.ValidName;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
@@ -27,6 +28,9 @@ public class User {
     @NotEmpty
     private String profilePicUrl;
 
+    public User() {
+    }
+//    @PersistenceConstructor
     public User(String name, String address, String email, int age, String profilePicUrl) {
         this.name = name;
         this.address = address;
@@ -35,6 +39,15 @@ public class User {
         this.profilePicUrl = profilePicUrl;
     }
 
+    @PersistenceConstructor
+    public User(String id,String name, String address, String email, int age, String profilePicUrl) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.email = email;
+        this.age = age;
+        this.profilePicUrl = profilePicUrl;
+    }
     public int getAge() {
         return age;
     }

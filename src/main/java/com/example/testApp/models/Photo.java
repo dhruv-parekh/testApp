@@ -2,6 +2,7 @@ package com.example.testApp.models;
 
 import com.example.testApp.Validation.ValidCreatedBy;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
 
 
 public class Photo {
@@ -14,6 +15,19 @@ public class Photo {
     @ValidCreatedBy
     private String createdBy;
     private String dateCreated;
+
+
+    public Photo() {
+    }
+
+    @PersistenceConstructor
+    public Photo(String id, String albumId, String photoUrl, String createdBy, String dateCreated) {
+        this.id = id;
+        this.albumId = albumId;
+        this.photoUrl = photoUrl;
+        this.createdBy = createdBy;
+        this.dateCreated = dateCreated;
+    }
 
     public Photo(String albumId, String photoUrl, String createdBy, String dateCreated) {
         this.albumId = albumId;

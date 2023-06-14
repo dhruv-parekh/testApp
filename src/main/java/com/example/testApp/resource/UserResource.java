@@ -1,14 +1,18 @@
 package com.example.testApp.resource;
 
 import com.example.testApp.exception.RestrictedInfoException;
+import com.example.testApp.model.FirebaseUser;
 import com.example.testApp.models.User;
+import com.example.testApp.service.FirebaseService;
 import com.example.testApp.service.TestAppService;
+import com.google.firebase.auth.FirebaseAuthException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -19,11 +23,23 @@ public class UserResource {
     @Autowired
     private TestAppService testAppService;
 
+    @Autowired
+    private FirebaseService firebaseService;
 
     @PostMapping
-    public User saveUser(@RequestBody @Valid User user){
-        return testAppService.saveUser(user);
+    public User saveUser(@RequestBody @Valid User user, @RequestHeader(name = "idToken") String idToken) throws IOException, FirebaseAuthException {
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if(firebaseUser != null){
+            return testAppService.saveUser(user);
+        }
+        return null;
+
     }
+
+//    @PostMapping
+//    public User saveUser(@RequestBody @Valid User user) {
+//            return testAppService.saveUser(user);
+//    }
 
     @GetMapping
     public List<User> getAllUsers(){

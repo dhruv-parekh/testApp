@@ -2,8 +2,7 @@ package com.example.testApp.models;
 
 import com.example.testApp.Validation.ValidCreatedBy;
 import org.hibernate.validator.constraints.Length;
-
-import javax.validation.constraints.Max;
+import org.springframework.data.annotation.PersistenceConstructor;
 
 public class Album {
 
@@ -19,6 +18,18 @@ public class Album {
 
     private String dateCreated;
 
+    public Album() {
+    }
+
+    @PersistenceConstructor
+    public Album(int albumId, String name, String description, String coverPicUrl, String createdBy, String dateCreated) {
+        this.albumId = albumId;
+        this.name = name;
+        this.description = description;
+        this.coverPicUrl = coverPicUrl;
+        this.createdBy = createdBy;
+        this.dateCreated = dateCreated;
+    }
 
     public Album(String name, String description, String coverPicUrl, String createdBy, String dateCreated) {
         this.name = name;
