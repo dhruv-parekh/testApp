@@ -1,11 +1,15 @@
 package com.example.testApp.resource;
 
+import com.example.testApp.model.FirebaseUser;
 import com.example.testApp.models.Album;
 import com.example.testApp.service.AlbumService;
+import com.example.testApp.service.FirebaseService;
+import com.google.firebase.auth.FirebaseAuthException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -14,6 +18,10 @@ public class AlbumResources {
 
     @Autowired
     private AlbumService albumService;
+
+    @Autowired
+    private FirebaseService firebaseService;
+
 
     @GetMapping("/album")
     public Album getAlbum(){
@@ -31,8 +39,10 @@ public class AlbumResources {
     }
 
     @GetMapping("/allAlbums")
-    public List<Album> getALlAlbums(){
-        return albumService.getAllAlbums();
+    public List<Album> getALlAlbums(@RequestHeader(name = "idToken") String idToken) throws IOException, FirebaseAuthException {
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if(firebaseUser!=null)   return albumService.getAllAlbums();
+        return null;
     }
 
 
