@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/photoApi/photos")
 public class PhotoResource {
@@ -21,6 +22,7 @@ public class PhotoResource {
     @Autowired
     private FirebaseService firebaseService;
 
+
     @GetMapping
     public List<Photo> getAllPhotos(@RequestHeader(name = "idToken") String idToken) throws IOException, FirebaseAuthException {
         FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
@@ -28,9 +30,9 @@ public class PhotoResource {
         return null;
     }
 
-    @GetMapping("/findId")
-    public Photo getPhotoById(@RequestParam String id){
-        return photoService.findPhotoById(id);
+    @GetMapping("/findId/{photoId}")
+    public Photo getPhotoById(@PathVariable String photoId){
+        return photoService.findPhotoById(photoId);
     }
 
     @GetMapping("/findCreator")

@@ -19,29 +19,29 @@ class AlbumServiceTests {
 
     @BeforeEach
     public void saveAlbum() {
-        albumService.saveAlbum(new Album(1, "AlbumName", "description of album",
+        albumService.saveAlbum(new Album("1", "AlbumName", "description of album",
                 "c:/sample/sample", "Dhruv", "date here"));
     }
 
     @Test
     public void getAlbumById() {
-        Album album = albumService.getAlbumById(1);
+        Album album = albumService.getAlbumById("1");
         Assert.assertEquals("Arpit", album.getCreatedBy());
     }
 
     @Test
     public void editAlbum() {
-        Album album = albumService.getAlbumById(1);
+        Album album = albumService.getAlbumById("1");
         album.setName("jacks album");
         album.setCreatedBy("Arpit");
-        albumService.updateAlbumById(1, album);
+        albumService.updateAlbumById("1", album);
         Assert.assertEquals("jacks", album.getName());
     }
 
     @After
     public void deleteAlbum() {
         System.out.println("in delete album method");
-        albumService.deleteAlbum(1);
+        albumService.deleteAlbum("1");
     }
 
 }

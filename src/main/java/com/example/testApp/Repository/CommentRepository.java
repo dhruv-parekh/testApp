@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CommentRepository extends MongoRepository<Comment, String> {
     List<Comment> findAllByCreatedBy(String createdBy);
+
+    List<Comment> findAllByPhotoId(String photoId);
 }

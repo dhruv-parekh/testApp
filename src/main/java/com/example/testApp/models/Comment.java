@@ -8,6 +8,7 @@ import javax.validation.constraints.Min;
 
 public class Comment {
 
+    @Id
     private String id;
     private String photoId;
     @Length(min = 5)

@@ -8,4 +8,6 @@ import java.util.List;
 public interface PhotoRepository extends MongoRepository<Photo,String> {
 
     List<Photo> findAllByCreatedBy(String createdBy);
+
+    List<Photo> findAllByAlbumId(String albumId);
 }

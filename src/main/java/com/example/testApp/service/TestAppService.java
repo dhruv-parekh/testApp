@@ -37,6 +37,23 @@ public class TestAppService {
          return userRepository.findById(id).get();
     }
 
+    public String updateUserProfilePic(String email, String profilePicUrl) {
+        User user = userRepository.findByEmail(email);
+        if(user!=null){
+            user.setProfilePicUrl(profilePicUrl);
+            userRepository.save(user);
+            return "profile picture changed";
+        }
+        return "user not found";
+    }
+
+    public User findUserByEmail(String email) {
+        if(userRepository.existsByEmail(email)){
+            return userRepository.findByEmail(email);
+        }
+        return null;
+    }
+
 
 //    public User getUserById(String id) {
 //        return userRepository.findById(id);
