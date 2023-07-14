@@ -34,9 +34,9 @@ public class CommentService {
         return commentRepository.findAllByCreatedBy(createdBy);
     }
 
-    public String saveComment(Comment comment) {
-        commentRepository.save(comment);
-        return "saved";
+    public Comment saveComment(Comment comment) {
+        return commentRepository.save(comment);
+
     }
 
     public String updateComment(Comment comment) {

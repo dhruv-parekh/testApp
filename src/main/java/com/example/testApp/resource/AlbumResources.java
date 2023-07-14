@@ -33,8 +33,14 @@ public class AlbumResources {
 //    }
 
     @PostMapping("/album")
-    public String saveAlbum(@RequestBody @Valid Album album){
-        return   albumService.saveAlbum(album);
+    public String saveAlbum(@RequestHeader(name = "idToken") String idToken ,@RequestBody @Valid Album album) throws IOException, FirebaseAuthException {
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if(firebaseUser!=null){
+            album.setAlbumId(null);
+            return  albumService.saveAlbum(album);
+        }
+        return "Error occured";
+
     }
 
     @GetMapping("/album/{albumId}")

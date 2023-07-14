@@ -11,7 +11,7 @@ public class Album {
     @Id
     private String albumId;
 
-    @Length(max = 10)
+    @Length(max = 100)
     private String name;
     private String description;
     private String coverPicUrl;
@@ -20,6 +20,8 @@ public class Album {
     private String createdBy;
 
     private String dateCreated;
+
+//    private String coverPhotoId;
 
     public Album() {
     }
@@ -41,6 +43,14 @@ public class Album {
         this.createdBy = createdBy;
         this.dateCreated = dateCreated;
     }
+
+//    public String getCoverPhotoId() {
+//        return coverPhotoId;
+//    }
+
+//    public void setCoverPhotoId(String coverPhotoId) {
+//        this.coverPhotoId = coverPhotoId;
+//    }
 
     public String getAlbumId() {
         return albumId;

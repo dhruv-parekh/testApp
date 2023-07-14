@@ -2,6 +2,7 @@ package com.example.testApp.resource;
 
 import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.S3Object;
+import com.example.testApp.models.File;
 import com.example.testApp.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -13,7 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/fileApi/file")
 public class FileResource {
@@ -21,11 +24,17 @@ public class FileResource {
     private FileService fileService;
 
 
-    @GetMapping("/view")
-    public void viewFile(@RequestParam(name="key") String key, HttpServletResponse response) throws IOException {
-        S3Object object =  fileService.getFile(key);
+    @GetMapping("/view/{fileId}")
+    public void viewFile(@PathVariable (name="fileId") String fileId, HttpServletResponse response) throws IOException {
+        S3Object object =  fileService.getFile(fileId);
         response.setContentType(object.getObjectMetadata().getContentType());
         response.getOutputStream().write(object.getObjectContent().readAllBytes());
+    }
+
+    @GetMapping("/allFiles")
+    public List<File> getAllFiles(){
+
+        return fileService.getAllFiles();
     }
 
     @GetMapping("/download")
@@ -37,8 +46,8 @@ public class FileResource {
                 .body(new ByteArrayResource(object.getObjectContent().readAllBytes()));
     }
 
-    @PostMapping
-    public boolean uploadFile(@RequestParam MultipartFile file){
+    @PostMapping("/upload")
+    public File uploadFile(@RequestParam MultipartFile file){
         return fileService.uploadFile(file);
     }
 

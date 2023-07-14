@@ -50,7 +50,9 @@ public class CommentResource {
 
 
     @PostMapping
-    public String saveComment(@RequestBody @Valid Comment comment){
+    public Comment saveComment(@RequestBody @Valid Comment comment){
+        comment.setId(null);
+        System.out.print("in save comment");
         return commentService.saveComment(comment);
     }
 
