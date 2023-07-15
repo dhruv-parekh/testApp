@@ -43,6 +43,8 @@ public class PhotoResource {
 
     @PostMapping
     public String savePhoto(@RequestBody @Valid Photo photo){
+
+        photo.setId(null);
         return photoService.savePhoto(photo);
     }
 
