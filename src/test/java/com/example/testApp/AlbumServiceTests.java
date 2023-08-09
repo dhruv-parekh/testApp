@@ -34,7 +34,7 @@ class AlbumServiceTests {
         Album album = albumService.getAlbumById("1");
         album.setName("jacks album");
         album.setCreatedBy("Arpit");
-        albumService.updateAlbumById("1", album);
+        albumService.updateAlbumById(album);
         Assert.assertEquals("jacks", album.getName());
     }
 

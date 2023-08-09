@@ -45,7 +45,11 @@ public class AlbumResources {
 
     @GetMapping("/album/{albumId}")
     public Album getAlbumById(@PathVariable String albumId){
-        return albumService.getAlbumById(albumId);
+
+        System.out.println("**************here in the get album by id method*********"+albumId);
+        Album album = albumService.getAlbumById(albumId);
+        System.out.println("album:***** "+album.getName());
+        return album;
     }
 
     @GetMapping("/album/{albumId}/photos")
@@ -63,16 +67,22 @@ public class AlbumResources {
         return null;
     }
 
+    @GetMapping("/AllAlbumsByUserEmail/{userEmail}")
+   public List<Album> getAllAlbumsByUserEmail(@PathVariable String userEmail){
 
+        return albumService.getAllAlbumsByUserEmail(userEmail);
 
+    }
 
-    @PutMapping("/album/{albumId}")
-    public String updateAlbum(@PathVariable String albumId, @RequestBody @Valid Album album){
-        return albumService.updateAlbumById(albumId, album);
+    @PutMapping("/album")
+    public String updateAlbum(@RequestBody @Valid Album album){
+        System.out.println("********** here"+album.getAlbumId());
+        return albumService.updateAlbumById(album);
     }
 
     @DeleteMapping("/album")
     public String deleteAlbum(@RequestParam String albumId){
+        System.out.println("in album resource: "+albumId);
         return albumService.deleteAlbum(albumId);
     }
 

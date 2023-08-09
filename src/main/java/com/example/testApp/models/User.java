@@ -1,12 +1,13 @@
 package com.example.testApp.models;
 
 import com.example.testApp.Validation.ValidName;
+import com.example.testApp.Validation.ValidPhoneNumber;
+import com.example.testApp.Validation.ValidWebsite;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 
 public class User {
 
@@ -28,26 +29,55 @@ public class User {
     @NotEmpty
     private String profilePicUrl;
 
+    @ValidPhoneNumber
+    @Size(max = 21)
+    private String phoneNumber;
+
+    @ValidWebsite
+    private String website;
+
+
     public User() {
     }
 //    @PersistenceConstructor
-    public User(String name, String address, String email, int age, String profilePicUrl) {
+    public User(String name, String address, String email, int age, String profilePicUrl, String phoneNumber, String website) {
         this.name = name;
         this.address = address;
         this.email = email;
         this.age = age;
         this.profilePicUrl = profilePicUrl;
+        this.phoneNumber = phoneNumber;
+        this.website = website;
     }
 
     @PersistenceConstructor
-    public User(String id,String name, String address, String email, int age, String profilePicUrl) {
+    public User(String id,String name, String address, String email, int age, String profilePicUrl, String phoneNumber, String website) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.email = email;
         this.age = age;
         this.profilePicUrl = profilePicUrl;
+        this.phoneNumber = phoneNumber;
+        this.website = website;
     }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
     public int getAge() {
         return age;
     }

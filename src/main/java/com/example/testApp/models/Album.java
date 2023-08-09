@@ -5,6 +5,8 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 
+import javax.validation.constraints.Email;
+
 
 public class Album {
 
@@ -16,7 +18,7 @@ public class Album {
     private String description;
     private String coverPicUrl;
 
-    @ValidCreatedBy
+    @Email
     private String createdBy;
 
     private String dateCreated;

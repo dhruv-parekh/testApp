@@ -26,7 +26,7 @@ class UserServiceTests {
 
 	@BeforeEach
 	public void saveUser(){
-		testAppService.saveUser(new User("7","Dhruv","Gujarat India","test@gmail.com",30,"c:/test/sample.jpg"));
+		testAppService.saveUser(new User("7","Dhruv","Gujarat India","test@gmail.com",30,"c:/test/sample.jpg","+1234567890","http://test.com"));
 	}
 
 	@Test

@@ -4,6 +4,7 @@ import com.example.testApp.Validation.ValidCreatedBy;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 
 public class Comment {
@@ -14,7 +15,7 @@ public class Comment {
     @Length(min = 5)
     private String message;
 
-    @ValidCreatedBy
+    @Email
     private String createdBy;
     private String dateCreated;
 

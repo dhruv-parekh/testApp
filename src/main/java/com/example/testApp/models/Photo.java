@@ -4,6 +4,8 @@ import com.example.testApp.Validation.ValidCreatedBy;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceConstructor;
 
+import javax.validation.constraints.Email;
+
 
 public class Photo {
     @Id
@@ -12,7 +14,7 @@ public class Photo {
 
     private String photoUrl;
 
-    @ValidCreatedBy
+    @Email
     private String createdBy;
     private String dateCreated;
 
